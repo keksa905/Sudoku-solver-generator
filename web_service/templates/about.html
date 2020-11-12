@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>About Page</title>
+   </head>
+   <body>
+      {% extends "template.html" %}
+      {% block menu %}
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      <li><a href="{{url_for('sudoku')}}">Solver</a></li>
+      <li><a href="{{url_for('play')}}">Play</a></li>
+      <li class="active"><a href="{{url_for('about')}}">About</a></li>
+      {% endblock %}
+      {% block content %}
+      <article>
+          <div id="centering">
+            <header>
+                <h1> About Page </h1>
+            </header>
+            <section>
+                <p> Put Something About Your App Here: </p>
+                <p> And Here.... </p>
+            </section>
+            <div class="cleaner"></div>
+          </div>
+      </article>
+      {% endblock %}
+   </body>
+</html>

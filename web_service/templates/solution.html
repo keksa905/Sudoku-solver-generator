@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block content %}
+<article>
+    <div id="centering">
+        <header>
+            <h1> Result </h1>
+        </header>
+        <div class="game-container">
+            <div class="grid-container">
+                {% for i in range(9) %}
+                <div class="grid-row">
+                    {% for j in range(9) %}
+                    <div class="grid-cell">
+                        <input type="number" maxlength="1" name='cell-input' value="{{ solved_puzzle[i][j] }}" readonly>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <div class='button-container'>
+                    <a class="btn btn-primary btn-block" href="{{ url_for('sudoku') }}">Back</a>
+                </div>
+            </div>
+        </div>
+        <div class="cleaner"></div>
+    </div>
+</article>
+
+{% endblock %}

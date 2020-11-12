@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block menu %}
+<li class="active"><a href="{{url_for('home')}}">Home</a></li>
+<li><a href="{{url_for('sudoku')}}">Solver</a></li>
+<li><a href="{{url_for('play')}}">Play</a></li>
+<li><a href="{{url_for('about')}}">About</a></li>
+{% endblock %}
+{% block content %}
+<article>
+    <div id="centering">
+        <header>
+            <h1> Welcome </h1>
+        </header>
+        <section>
+            <p>
+                Do you have problem with solving some Sudoku puzzle? Here you can solve your puzzle!
+                <a href="{{url_for('sudoku')}}">Try it!</a>
+            </p>
+            <p>
+                Or you can play a game of Sudoku by yourself. Try to solve a puzzle <a href="{{url_for('play')}}">here!</a>
+            </p>
+        </section>
+        <div class="cleaner"></div>
+    </div>
+</article>
+
+{% endblock %}

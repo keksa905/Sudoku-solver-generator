@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sudoku</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/clear.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/entering_values.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/nextinput.js') }}"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/template.css')}}">
+    </head>
+    <body>
+        <header>
+            <div id="logo"><h1>Sudoku</h1></div>
+            <strong>
+                <nav>
+                    <ul class="menu">
+                        {% block menu %}{% endblock %}
+                    </ul>
+                </nav>
+            </strong>
+        </header>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p class="centred">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+        <div class='footer'>
+            <h2 style="text-align: left; color: white;">Created by ©René Kesler</h2>
+            <a class="btn btn-social" href="https://github.com/keksa905/Sudoku-solver-generator" target='_blank'>
+                <span ></span> View on github
+            </a>
+        </div>
+
+    </body>
+</html>

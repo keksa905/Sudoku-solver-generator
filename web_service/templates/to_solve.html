@@ -1,0 +1,57 @@
+{% extends "template.html" %}
+{% block menu %}
+<li><a href="{{url_for('home')}}">Home</a></li>
+<li><a href="{{url_for('sudoku')}}">Solver</a></li>
+<li class="active"><a href="{{url_for('play')}}">Play</a></li>
+<li><a href="{{url_for('about')}}">About</a></li>
+{% endblock %}
+{% block content %}
+<article>
+    <form action="{{ url_for('generate_sudoku') }}" method="post" style="float: left; margin-left: 50px", name="Difficulty">
+        <header>
+            <h1> Generate New Sudoku: </h1>
+        </header>
+        <div class="button-container">
+            <input type="submit" name="generate_easy" value="Easy" class="btn btn-primary btn-block">
+            <input type="submit" name="generate_medium" value="Medium" class="btn btn-primary btn-block">
+            <input type="submit" name="generate_hard" value="Hard" class="btn btn-primary btn-block">
+        </div>
+
+    </form>
+    <div id="centering">
+        <header>
+            <h1> Solve: </h1>
+        </header>
+        <div class="game-container">
+            <div class="grid-container">
+                <form action="{{ url_for('play') }}" method="post" name="sudoku-input">
+                    {% for i in range(9) %}
+                    <div class="grid-row">
+                        {% for j in range(9) %}
+                        <div class="grid-cell">
+                            {% if sudoku[i][j] == 0%}
+                            {% if current_sudoku is defined and current_sudoku[i][j] != 0 %}
+                            <input type="text" maxlength="1" autocomplete="off" name='cell-input[{{ j+i*9 }}]' value="{{ current_sudoku[i][j] }}"
+                                   class="def-txt-input">
+                            {% else %}
+                            <input type="text" maxlength="1" autocomplete="off" name='cell-input[{{ j+i*9 }}]' class="def-txt-input">
+                            {% endif %}
+                            {% else %}
+                            <input style="background-color: rgba(130, 120, 110, 0.35)" type="number" maxlength="1" name='cell-input[{{ j+i*9 }}]'
+                                   value="{{ sudoku[i][j] }}" readonly>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <div class="button-container">
+                        <input type="submit" value="Check" class="btn btn-primary btn-block">
+                        <button id="clear-btn" type="button" class="btn btn-secondary btn-block">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="cleaner" style="height: 110px"></div>
+    </div>
+</article>
+{% endblock %}
